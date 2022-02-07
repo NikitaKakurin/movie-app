@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie-app</title>
+</head>
+<body>
+    <div class="movie__container">
+        <header class="movie-header">
+            <h1 class="movie__title">Movie-app</h1>
+            <form action="" class="movie-header__form">
+                <select name="perPage" id="perPage" class="movie-header__form-select-count">
+                    <option value="5">5 per page</option>
+                    <option value="10">10 per page</option>
+                    <option value="15">15 per page</option>
+                    <option value="20">20 per page</option>
+                    <option value="25">25 per page</option>
+                    <option value="30">30 per page</option>
+                </select>
+                <div class="movie-header__wraper-search">
+                    <input class="movie-header__form-search" autocomplete="off" type="text" name="search" id="search" placeholder="search">
+                    <button type="reset" class="movie-header__form-search-reset-btn">&times;</button>
+                </div>
+            </form>
+        </header>
+        <main class="movie-main">
+            <div class="movie-main__conteiner"></div>
+        </main>
+        <footer class = "movie-footer">
+            <div class = "movie-footer__container">
+                <div class="movie__github-container">
+                    <span>©</span>
+                    <span>2022</span>
+                    <a href="https://github.com/NikitaKakurin" class="movie__github-link">github</a>
+                </div>
+                <a href="https://rs.school/js-stage0/" class="movie-rsscholl">Rolling Scopes School</a>
+                <div class="movie-tmbd__logo"></div>
+            </div>
+            <span class="movie-tmbd__text">This product uses the TMDB API but is not endorsed or certified by TMDB.</span>
+        </footer>
+    </div>
+</body>
+</html>

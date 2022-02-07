@@ -1,0 +1,134 @@
+
+@mixin formsInputs() {
+    border: 2px solid #22254b;
+    border-radius: 50px;
+    background: transparent;
+    height: 50px;
+    padding: 10px 8px;
+    color: $mainColor;
+    font-size: inherit;
+}
+
+$mainBgColor: #373b6a;
+$headerBgColor: #21254b;
+$mainColor: aliceblue;
+$activeColor: #b2bd42;
+
+*{
+    box-sizing: border-box;
+}
+option{
+    color: #000;
+}
+html{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.movie__container{
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.movie-header{
+    background: $mainBgColor;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+}
+.movie__title{
+    color: $mainColor;
+}
+
+.movie-header__form{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.movie-header__form-select-count{
+    @include formsInputs();
+}
+.movie-header__wraper-search{
+    position: relative;
+}
+.movie-header__form-search{
+    @include formsInputs();
+    width: 200px;    
+    padding-right: 30px;
+}
+
+.movie-header__form-search::placeholder{
+    color: $mainColor;
+}
+
+.movie-header__form-search-reset-btn{
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    color: $mainColor;
+    font-size: inherit;
+    border: none;
+    background: transparent;
+}
+
+.movie-main{
+    background: $headerBgColor;
+    flex-grow: 1;
+}
+.movie-footer{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    color: $mainColor;
+    background: $mainBgColor;
+}
+.movie-footer__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 100px;
+    color: $mainColor;
+    background: $mainBgColor;
+}
+
+.movie__github-container{
+    display: flex;
+    gap: 20px;
+}
+.movie-rsscholl,
+.movie__github-link{
+    font-size: inherit;
+    color: $mainColor;
+    text-decoration: none;
+}
+.movie-rsscholl:hover,
+.movie__github-link:hover{
+    color: $activeColor
+}
+
+.movie-tmbd__logo{
+    min-width: 146px;
+    height: 50px;
+    background-image: url("../assets/svg/tmbd-logo.svg");
+    background-repeat: no-repeat;
+    background-size: 50px 50px ;
+    background-position: center center ;
+}
+
+.movie-tmbd__text{
+    align-self: flex-end;
+}
