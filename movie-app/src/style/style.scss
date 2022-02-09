@@ -9,17 +9,16 @@
     font-size: inherit;
 }
 
-$mainBgColor: #373b6a;
-$headerBgColor: #21254b;
+$headerBgColor: #373b6a;
+$mainBgColor: #21254b;
 $mainColor: aliceblue;
 $activeColor: #b2bd42;
 
 *{
     box-sizing: border-box;
 }
-option{
-    color: #000;
-}
+
+
 html{
     font-size: 20px;
     font-weight: 400;
@@ -38,7 +37,7 @@ body{
 }
 
 .movie-header{
-    background: $mainBgColor;
+    background: $headerBgColor;
     height: 100px;
     display: flex;
     align-items: center;
@@ -57,6 +56,11 @@ body{
 
 .movie-header__form-select-count{
     @include formsInputs();
+
+    option{
+        color: $mainColor;
+        background-color:$mainBgColor;
+    }
 }
 .movie-header__wraper-search{
     position: relative;
@@ -82,9 +86,73 @@ body{
 }
 
 .movie-main{
-    background: $headerBgColor;
+    background: $mainBgColor;
     flex-grow: 1;
 }
+
+.movie-main__container{
+    margin: 0 auto;
+    max-width: 1440px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 30px;
+}
+
+.movie-main__data-container{
+    position: relative;
+    width: 300px;
+    height: 528px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+.movie-main__data-container:hover .movie-main__data-overview{
+    bottom: 0;
+    
+}
+
+.movie-main__data-poster{
+    width: 100%;
+    max-height: 440px;
+}
+
+.movie-main__data-info{
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+    padding: 8px 16px 16px 16px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $headerBgColor;
+}
+
+.movie-main__data-name{
+    margin-top: 0;
+    margin-bottom: 0;
+    color: $mainColor;
+}
+
+.movie-main__data-rating{
+    padding: 4px 8px;
+    background: $mainBgColor;
+    color: aliceblue;
+}
+
+.movie-main__data-overview{
+    position: absolute;
+    bottom: -528px;
+    max-height: 100%;
+    width: 100%;
+    padding: 32px;
+    color: #1c1c1c;
+    background-color: #fff;
+    transition: bottom 0.5s ease-in;
+    overflow-y: auto;
+}
+
 .movie-footer{
     height: 100px;
     display: flex;
@@ -93,8 +161,9 @@ body{
     align-items: center;
     padding-top: 20px;
     color: $mainColor;
-    background: $mainBgColor;
+    background: $headerBgColor;
 }
+
 .movie-footer__container{
     display: flex;
     justify-content: space-between;
@@ -102,7 +171,7 @@ body{
     width: 100%;
     padding: 0 100px;
     color: $mainColor;
-    background: $mainBgColor;
+    background: $headerBgColor;
 }
 
 .movie__github-container{
