@@ -76,17 +76,24 @@ function handleSubmitForm(event){
 };
 
 function pasteMovies(url){
-    containerMovies.innerHTML="";
-    addFragmentToPaginations();
     console.log(url)
-    async function getData(){
-        const res = await fetch(url);
-        const data = await res.json();
-        containerMovies.append(createMovies(data));
-        displayTitle(data);
-        renderPagination(data)
-    }
-    getData();
+    fetch(url)
+        .then((res)=>{
+            if(res.ok){
+                return res;
+            }
+            alert('Ошибка http: ' + res.status);
+        })
+        .then(res=> res.json())
+        .then(data=>{
+            containerMovies.innerHTML="";
+            addFragmentToPaginations();
+            containerMovies.append(createMovies(data));
+            displayTitle(data);
+            renderPagination(data)
+        })
+        .catch(err => alert("Ошибка Http: " + response.status))
+
 }
 
 function renderPagination(data){
@@ -202,16 +209,21 @@ function createMovie(dataMovie){
     overview.append(overviewTitle);
     overview.append(overviewText);
 
-    let posterSrc =`https://image.tmdb.org/t/p/w300${dataMovie.poster_path}` 
-    fetch(posterSrc)
-          .then(response=>poster.src = posterSrc)
-          .catch(err => poster.src = noPoster)
+    if(dataMovie.poster_path){
+        let posterSrc =`https://image.tmdb.org/t/p/w300${dataMovie.poster_path}` 
+        fetch(posterSrc)
+              .then(response=>poster.src = posterSrc)
+              .catch(err => poster.src = noPoster)
+    }else{
+        poster.src = noPoster;
+    }
+
 
     poster.alt = dataMovie.title;
 
     infoName.innerText = dataMovie.title;
     infoRating.innerText = dataMovie.vote_average;
-    fixColorRating();
+    fixColorRating(infoRating, dataMovie.vote_average);
     overviewTitle.innerText = "Overview";
     overviewText.innerText = dataMovie.overview;
 
@@ -219,17 +231,17 @@ function createMovie(dataMovie){
 
     return containerMovie;
 
-    function fixColorRating(){
-        if(dataMovie.vote_average<5){
-            infoRating.style.color = "red"
-        }else if(dataMovie.vote_average<8){
-            infoRating.style.color = "orange"
-        }else{
-            infoRating.style.color = "green"
-        }
+
+}
+export function fixColorRating(elem,rating){
+    if(rating<5){
+        elem.style.color = "red"
+    }else if(rating<8){
+        elem.style.color = "orange"
+    }else{
+        elem.style.color = "green"
     }
 }
-
 function createOneElement(tag, className){
     const elem = document.createElement(tag);
     elem.classList.add(className);
