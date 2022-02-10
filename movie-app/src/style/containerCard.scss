@@ -1,0 +1,99 @@
+$headerBgColor: #373b6a;
+$mainBgColor: #21254b;
+$mainColor: aliceblue;
+$activeColor: #b2bd42;
+
+.movie-main__wrapper-container-card{
+    font-size: 20px;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(200, 200, 200, 0.15);
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    overflow: hidden;
+}
+
+.movie-main__container-card{
+    margin: 0 auto;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    color: $mainColor;
+    border: 10px solid #aca9a9;
+    background-color: $headerBgColor;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.movie-main__wrapper-card-info{
+    color: #cfcfd4;
+    padding: 20px;    
+    max-width: 300px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+    row-gap: 20px;
+}
+.movie-main__container-card-title{
+    text-align: center;
+}
+.movie-main__container-card-properties{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.movie-main__container-card-wrapper-prop{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.movie-main__container-card-date,
+.movie-main__container-card-genres,
+.movie-main__container-card-time,
+.movie-main__container-card-rating{
+    text-align: right;
+}
+.movie-main__container-card-overview{
+    line-height: 1.5rem;
+}
+
+.movie-main__container-card-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    font-size: 70px;
+    line-height: 0;
+    font-weight: 900;
+    vertical-align: middle;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+}
+
+.movie-main__container-card-close:hover{
+    color: $activeColor;
+}
+
+.movie-main__container-card-container-video{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2;
+
+
+}

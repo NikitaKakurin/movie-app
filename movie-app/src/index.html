@@ -21,14 +21,55 @@
                 </select>
                 <div class="movie-header__wraper-search">
                     <input class="movie-header__form-search" autocomplete="off" type="text" name="search" id="search" placeholder="search">
-                    <button type="reset" class="movie-header__form-search-reset-btn">&times;</button>
+                    <button type="button" class="movie-header__form-search-reset-btn">&times;</button>
                 </div>
             </form>
         </header>
         <main class="movie-main">
             <p class="movie-main__title"></p>
+            <p class="movie-main__pagination"></p>
+            <div class = "movie-main__wrapper-container-card">
+                <div class = "movie-main__container-card">
+                    <header class = "movie-main__container-card-header">
+                        <div class="movie-main__wrapper-card-info">
+                            <h3 class="movie-main__container-card-title"></h3>
+                            <div class="movie-main__container-card-properties">
+                                <div class="movie-main__container-card-wrapper-prop">
+                                    <span class="prop__left">Release date:</span>
+                                    <span class="movie-main__container-card-date"></span>
+                                </div>
+                                <div class="movie-main__container-card-wrapper-prop">
+                                    <span class="prop__left">Genres:</span>
+                                    <span class="movie-main__container-card-genres"></span>
+                                </div>
+                                <div class="movie-main__container-card-wrapper-prop">
+                                    <span class="prop__left">Releted time:</span>
+                                    <span class="movie-main__container-card-time"></span>
+                                </div>
+                                <div class="movie-main__container-card-wrapper-prop">
+                                    <span class="prop__left">Rating:</span>
+                                    <span class="movie-main__container-card-rating"></span>
+                                </div>
+                            </div>
+                            <p class="movie-main__container-card-tagline"></p>
+                            <h4>Overview:</h4>
+                            <p class="movie-main__container-card-overview"></p>
+                        </div>
+                    </header>
+                    <div class="movie-main__container-card-container-video">
+                        <iframe width="560" height="315" 
+                            class="movie-main__container-card-video"
+                            src="https://www.youtube.com/embed/" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        <button class = "movie-main__container-card-close">&times;</button>
+                    </div> 
+                </div>       
+            </div>
             <div class="movie-main__container">
-                
 
             </div>
             <p class="movie-main__pagination"></p>

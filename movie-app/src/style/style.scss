@@ -68,11 +68,37 @@ body{
 .movie-header__form-search{
     @include formsInputs();
     width: 200px;    
-    padding-right: 30px;
+    padding-right: 40px;
+    transition: color .5s ease-in, border .5s ease-in;
 }
 
 .movie-header__form-search::placeholder{
     color: $mainColor;
+    transition: color .5s ease-in
+}
+
+.movie-header__form-search:hover{
+    border: 2px solid $activeColor;
+    color: $activeColor;
+}
+.movie-header__form-search:focus{
+    background-color: rgb(226, 228, 229);
+    color:#1c1c1c
+}
+.movie-header__form-search:focus::placeholder{
+    color:#1c1c1c
+}
+
+.movie-header__form-search:focus:hover::placeholder{
+    color:#1c1c1c
+}
+
+.movie-header__form-search:focus+.movie-header__form-search-reset-btn{
+    color:#1c1c1c
+}
+
+.movie-header__form-search:hover::placeholder{
+    color: $activeColor;
 }
 
 .movie-header__form-search-reset-btn{
@@ -81,14 +107,57 @@ body{
     right: 10px;
     color: $mainColor;
     font-size: inherit;
+    font-weight: 700;
     border: none;
     background: transparent;
+    transition: color .3s ease-in, outline .1s ease-in;
+}
+.movie-header__form-search-reset-btn:hover{
+    cursor: pointer;
+    outline: 2px solid $activeColor;
+    border-radius: 10px;
+    color: $activeColor;
 }
 
 .movie-main{
     background: $mainBgColor;
     flex-grow: 1;
 }
+.movie-main__title{
+    text-align: center;
+    color: $mainColor;
+    margin: 30px 0px;
+}
+.movie-main__pagination{
+    text-align: center;
+    color: $mainColor;
+}
+
+.movie-main__pagination-btn{
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    color: $mainColor;
+    margin-left: 20px;
+    cursor: pointer;
+    pointer-events: all;
+    transition: color 0.5s ease-in;
+}
+.movie-main__pagination-btn-current{
+    outline: 1px solid $mainColor;
+}
+
+.movie-main__pagination-btn:hover{
+    color: $activeColor;
+    cursor:pointer;
+    pointer-events: all;
+}
+
+.movie-main__pagination-span{
+    margin-left: 20px;
+}
+
+
 
 .movie-main__container{
     margin: 0 auto;
@@ -100,6 +169,7 @@ body{
     row-gap: 30px;
 }
 
+
 .movie-main__data-container{
     position: relative;
     width: 300px;
@@ -107,10 +177,14 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
     overflow: hidden;
+    cursor:pointer;
 }
 .movie-main__data-container:hover .movie-main__data-overview{
     bottom: 0;
+    cursor:pointer;
     
 }
 
