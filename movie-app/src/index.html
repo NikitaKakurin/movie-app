@@ -11,13 +11,35 @@
         <header class="movie-header">
             <h1 class="movie__title">Movie-app</h1>
             <form class="movie-header__form">
-                <select name="prop" id="prop" class="movie-header__form-select-count">
+                <select name="rating" id="rating" class="movie-header__form-select-rating select">
+                    <option value="">rating</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <select name="country" id="country" class="movie-header__form-select-country select">
+                    <option value="">Country</option>
+                    <option value="RU">Russia</option>
+                    <option value="US">USA</option>
+                    <option value="IT">Italy</option>
+                    <option value="FR">France</option>
+                    <option value="GE">Germany</option>
+                </select>
+                <select name="prop" id="prop" class="movie-header__form-select-main select">
                     <option value="vote_average">by rating</option>
                     <option value="release_date">by date</option>
                     <option value="popularity">by popularity</option>
                 </select>
-                <select name = "genres" id="genres" class="movie-header__form-select-count" >
-                    <option value=""></option>
+                <select name = "genres" id="genres" class="movie-header__form-select-genres select" >
+                    <option value="" selected>Genres</option>
                     <option value="28">Action</option>
                     <option value="12">Adventure</option>
                     <option value="16">Animation</option>
@@ -38,8 +60,8 @@
                     <option value="10752">War</option>
                     <option value="37">Western</option>
                 </select>
-                <input class="movie-header__form-select-count" type = "number" max="2022" min="1895">
-                <button type="button" class="movie-header__form-sort">Sort</button>
+                <input class="movie-header__form-select-year" type = "number" max="2022" min="1895" placeholder="Year">
+                <button type="button" class="movie-header__form-sort-btn">Sort</button>
                 <div class="movie-header__wraper-search">
                     <input class="movie-header__form-search" autocomplete="off" type="text" name="search" id="search" placeholder="search">
                     <button type="button" class="movie-header__form-search-reset-btn">&times;</button>
@@ -82,7 +104,6 @@
                             class="movie-main__container-card-video"
                             src="https://www.youtube.com/embed/" 
                             title="YouTube video player" 
-                            frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
                         </iframe>

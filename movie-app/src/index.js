@@ -8,36 +8,42 @@ import Card from './Card.js';
 
 
 const searchInput = document.querySelector('.movie-header__form-search');
-const searchResetButton = document.querySelector('.movie-header__form-search-reset-btn');
 const form = document.querySelector('.movie-header__form');
 const containerMovies =  document.querySelector('.movie-main__container');
-const sortButton = document.querySelector('.movie-header__form-sort')
+const resetButton = document.querySelector('.movie-header__form-search-reset-btn')
 const paginations= document.querySelectorAll(".movie-main__pagination");
+const genresSelect = document.querySelector('.movie-header__form-select-genres');
+const yearSelect  = document.querySelector('.movie-header__form-select-year');
+const mainSelect = document.querySelector('.movie-header__form-select-main');
+const countrySelect  = document.querySelector('.movie-header__form-select-country')
+const ratingSelect  = document.querySelector('.movie-header__form-select-rating')
 
-let url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b66e39cd8df804db7c43212613fe5719&page=1`;
+let url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b66e39cd8df804db7c43212613fe5719&page=1&language=en-US`;
 let page;
 let card;
 searchInput.focus();
-pasteMovies(url);
-searchInput.addEventListener('keydown', handleKeyDown);
-form.addEventListener('submit', handleSubmitForm)
-document.addEventListener('click', handleClick)
+searchInput.addEventListener('keydown',handleKeyDown);
 function handleKeyDown(event) {
-    if(event.code==='Enter'||event.code==='NumpadEnter'){
-        form.submit();
+    if(event.code ==="Enter"||event.code ==="NumpadEnter"){
+        makeSearch();
     }
 }
+pasteMovies(url);
+document.addEventListener('click', handleClick)
+
 function handleClick(event){
     const target = event.target;
     if(target.classList.contains('movie-header__form-search-reset-btn')){
         searchInput.value = "";
         searchInput.focus();
     }
+
     if(target.classList.contains('movie-main__pagination-btn')){
         page=target.value;
         url = url.replace(/page=[\d]+/,`page=${page}`)
         pasteMovies(url);
     }
+    
     if(target.classList.contains('movie-main__data-container')||
          target.closest('.movie-main__data-container')){
         let id = target.closest('.movie-main__data-container').dataset.id;
@@ -47,13 +53,25 @@ function handleClick(event){
     if(target.classList.contains('movie-main__container-card-close')){
         card.hide();
     }
+    if (target.classList.contains('movie-header__form-sort-btn')) {
+        createUrl();
+    }
 }
 
-
+function createUrl(){
+    let genre = (genresSelect.value)?`&with_genres=${genresSelect.value}` : "";
+    let year = (yearSelect.value)?`&primary_release_year=${yearSelect.value}` :"";
+    let main = mainSelect.value;
+    let country = (countrySelect.value)?`&certification_country=${countrySelect.value}` :"";
+    let rating =(ratingSelect.value!=="")?`&vote_average.desc=${ratingSelect.value}&vote_average.gte=${ratingSelect.value}` :"";
+    console.log(rating);
+    let url =`https://api.themoviedb.org/3/discover/movie?api_key=b66e39cd8df804db7c43212613fe5719&sort_by=${main}.desc&language=en-US&vote_count.gte=500${rating}${country}${genre}${year}`
+    //  `https://api.themoviedb.org/3/discover/movie?api_key=MYAPIKEYHERE&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2012&vote_count.gte=500&vote_average.gte=5&with_genres=12`
+    pasteMovies(url)
+}
 
 function getMovieCardData(id){
-debugger
-    let movieUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=b66e39cd8df804db7c43212613fe5719`;
+    let movieUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=b66e39cd8df804db7c43212613fe5719&language=en-US`;
     fetch(movieUrl)
         .then(response=>response.json())
         .then((data)=>{
@@ -69,19 +87,18 @@ function displayMovieCardData(MovieCardData){
     card.show();
 }
 
-function handleSubmitForm(event){
-    debugger
-    event.preventDefault()
+function makeSearch(){
     const query = form.elements.search.value;
     if(query==""){
         //sort_by=release_date.desc&
         // vote_average.desc&
-        //https://api.themoviedb.org/3/discover/movie?api_key=MYAPIKEYHERE&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2012&vote_count.gte=500&vote_average.gte=5&with_genres=12  
-        url = `https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=b66e39cd8df804db7c43212613fe5719&page=1&primary_release_year=2012&vote_average.gte=10`;
+        //https://api.themoviedb.org/3/discover/movie?api_key=MYAPIKEYHERE&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2012&vote_count.gte=500&vote_average.gte=5&with_genres=12
+        url = `https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=b66e39cd8df804db7c43212613fe5719&page=1&language=en-US&vote_count.gte=500`;
 
     }else{
-        url = `https://api.themoviedb.org/3/search/movie?api_key=b66e39cd8df804db7c43212613fe5719&query=${query}&page=1`;
+        url = `https://api.themoviedb.org/3/search/movie?api_key=b66e39cd8df804db7c43212613fe5719&query=${query}&page=1&language=en-US&vote_count.gte=500`;
     }
+    console.log(url);
     pasteMovies(url)
 };
 
@@ -110,7 +127,8 @@ function renderPagination(data){
     if ( data.total_pages == 0){
         addFragmentToPaginations()
         return;
-    } 
+    }
+
     let fragment = document.createElement('div');
     
     if(data.total_pages <=5){
@@ -238,11 +256,9 @@ function createMovie(dataMovie){
     overviewText.innerText = dataMovie.overview;
 
     containerMovie.dataset.id=dataMovie.id
-    containerMovie.style.cursor="pointer";
     return containerMovie;
-
-
 }
+
 export function fixColorRating(elem,rating){
     if(rating<5){
         elem.style.color = "red"

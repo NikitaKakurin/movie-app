@@ -16,7 +16,9 @@ class Card{
     }
 
     render(dataCard){
-        this.cardContainer.style.backgroundImage =`url(https://image.tmdb.org/t/p/w1280${dataCard.backdrop_path})`
+        if(dataCard.backdrop_path){
+            this.cardContainer.style.backgroundImage =`url(https://image.tmdb.org/t/p/w1280${dataCard.backdrop_path})`
+        }
         this.title.innerText = dataCard.original_title;
         this.date.innerText = dataCard.release_date;
         this.genres.innerText = getList(dataCard.genres);
@@ -39,7 +41,6 @@ class Card{
         let src;
         let videosUrl =  `https://api.themoviedb.org/3/movie/${id}/videos?api_key=b66e39cd8df804db7c43212613fe5719`;
         const getSrc = (data)=>{
-            debugger
             if(data.results.length===0){return};
             for(let video of data.results){
                 if(video.type==="Teaser"||video.type==="Trailer"){
@@ -52,7 +53,7 @@ class Card{
         fetch(videosUrl)
             .then((response)=>response.json())
             .then((data)=>{
-debugger
+
                 getSrc(data)
             })
         

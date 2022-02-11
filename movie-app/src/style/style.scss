@@ -16,7 +16,9 @@ $activeColor: #b2bd42;
 
 *{
     box-sizing: border-box;
+    pointer-events: auto;
 }
+
 
 
 html{
@@ -53,15 +55,41 @@ body{
     align-items: center;
     gap: 30px;
 }
-
-.movie-header__form-select-count{
+.select{
     @include formsInputs();
 
     option{
         color: $mainColor;
         background-color:$mainBgColor;
     }
+    transition: color .5s ease-in, border .5s ease-in;
+    cursor: pointer;
 }
+.movie-header__form-select-year{
+    @include formsInputs();
+    transition: color .5s ease-in, border .5s ease-in;
+}
+.movie-header__form-select-year::placeholder{
+    color: $mainColor
+}
+
+.movie-header__form-sort-btn{
+    @include formsInputs();
+    width: 100px;
+    background: rgb(232, 232, 233);
+    color: #1c1c1c;
+    cursor: pointer;
+    transition: background 0.5s ease-in;
+    transition: color 0.5s ease-in;
+}
+
+.movie-header__form-sort-btn:hover{
+    background: rgb(182, 182, 184);
+    color: #000;
+    cursor: pointer ;
+}
+
+
 .movie-header__wraper-search{
     position: relative;
 }
@@ -76,11 +104,13 @@ body{
     color: $mainColor;
     transition: color .5s ease-in
 }
-
+.movie-header__form-select-year:hover,
+.select:hover,
 .movie-header__form-search:hover{
     border: 2px solid $activeColor;
     color: $activeColor;
 }
+
 .movie-header__form-search:focus{
     background-color: rgb(226, 228, 229);
     color:#1c1c1c
@@ -140,7 +170,7 @@ body{
     color: $mainColor;
     margin-left: 20px;
     cursor: pointer;
-    pointer-events: all;
+
     transition: color 0.5s ease-in;
 }
 .movie-main__pagination-btn-current{
@@ -149,8 +179,8 @@ body{
 
 .movie-main__pagination-btn:hover{
     color: $activeColor;
-    cursor:pointer;
-    pointer-events: all;
+    cursor: pointer;
+
 }
 
 .movie-main__pagination-span{
@@ -180,11 +210,11 @@ body{
     margin-left: 10px;
     margin-right: 10px;
     overflow: hidden;
-    cursor:pointer;
+    cursor: pointer;
 }
 .movie-main__data-container:hover .movie-main__data-overview{
     bottom: 0;
-    cursor:pointer;
+    cursor: pointer;
     
 }
 
