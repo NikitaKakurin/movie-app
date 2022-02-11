@@ -11,7 +11,7 @@ const searchInput = document.querySelector('.movie-header__form-search');
 const searchResetButton = document.querySelector('.movie-header__form-search-reset-btn');
 const form = document.querySelector('.movie-header__form');
 const containerMovies =  document.querySelector('.movie-main__container');
-const resetButton = document.querySelector('.movie-header__form-search-reset-btn')
+const sortButton = document.querySelector('.movie-header__form-sort')
 const paginations= document.querySelectorAll(".movie-main__pagination");
 
 let url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b66e39cd8df804db7c43212613fe5719&page=1`;
@@ -19,9 +19,14 @@ let page;
 let card;
 searchInput.focus();
 pasteMovies(url);
+searchInput.addEventListener('keydown', handleKeyDown);
 form.addEventListener('submit', handleSubmitForm)
 document.addEventListener('click', handleClick)
-
+function handleKeyDown(event) {
+    if(event.code==='Enter'||event.code==='NumpadEnter'){
+        form.submit();
+    }
+}
 function handleClick(event){
     const target = event.target;
     if(target.classList.contains('movie-header__form-search-reset-btn')){
@@ -44,7 +49,10 @@ function handleClick(event){
     }
 }
 
+
+
 function getMovieCardData(id){
+debugger
     let movieUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=b66e39cd8df804db7c43212613fe5719`;
     fetch(movieUrl)
         .then(response=>response.json())
@@ -62,12 +70,14 @@ function displayMovieCardData(MovieCardData){
 }
 
 function handleSubmitForm(event){
+    debugger
     event.preventDefault()
     const query = form.elements.search.value;
     if(query==""){
         //sort_by=release_date.desc&
         // vote_average.desc&
-        url = `https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=b66e39cd8df804db7c43212613fe5719&page=1`;
+        //https://api.themoviedb.org/3/discover/movie?api_key=MYAPIKEYHERE&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2012&vote_count.gte=500&vote_average.gte=5&with_genres=12  
+        url = `https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=b66e39cd8df804db7c43212613fe5719&page=1&primary_release_year=2012&vote_average.gte=10`;
 
     }else{
         url = `https://api.themoviedb.org/3/search/movie?api_key=b66e39cd8df804db7c43212613fe5719&query=${query}&page=1`;
@@ -228,7 +238,7 @@ function createMovie(dataMovie){
     overviewText.innerText = dataMovie.overview;
 
     containerMovie.dataset.id=dataMovie.id
-
+    containerMovie.style.cursor="pointer";
     return containerMovie;
 
 

@@ -11,14 +11,35 @@
         <header class="movie-header">
             <h1 class="movie__title">Movie-app</h1>
             <form class="movie-header__form">
-                <select name="perPage" id="perPage" class="movie-header__form-select-count">
-                    <option value="5">5 per page</option>
-                    <option value="10">10 per page</option>
-                    <option value="15">15 per page</option>
-                    <option value="20">20 per page</option>
-                    <option value="25">25 per page</option>
-                    <option value="30">30 per page</option>
+                <select name="prop" id="prop" class="movie-header__form-select-count">
+                    <option value="vote_average">by rating</option>
+                    <option value="release_date">by date</option>
+                    <option value="popularity">by popularity</option>
                 </select>
+                <select name = "genres" id="genres" class="movie-header__form-select-count" >
+                    <option value=""></option>
+                    <option value="28">Action</option>
+                    <option value="12">Adventure</option>
+                    <option value="16">Animation</option>
+                    <option value="35">Comedy</option>
+                    <option value="80">Crime</option>
+                    <option value="99">Documentary</option>
+                    <option value="18">Drama</option>
+                    <option value="10751">Family</option>
+                    <option value="14">Fantasy</option>
+                    <option value="36">History</option>
+                    <option value="27">Horror</option>
+                    <option value="10402">Music</option>
+                    <option value="9648">Mystery</option>
+                    <option value="10749">Romance</option>
+                    <option value="878">Science Fiction</option>
+                    <option value="10770">TV Movie</option>
+                    <option value="53">Thriller</option>
+                    <option value="10752">War</option>
+                    <option value="37">Western</option>
+                </select>
+                <input class="movie-header__form-select-count" type = "number" max="2022" min="1895">
+                <button type="button" class="movie-header__form-sort">Sort</button>
                 <div class="movie-header__wraper-search">
                     <input class="movie-header__form-search" autocomplete="off" type="text" name="search" id="search" placeholder="search">
                     <button type="button" class="movie-header__form-search-reset-btn">&times;</button>
