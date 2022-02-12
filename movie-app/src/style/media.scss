@@ -1,0 +1,97 @@
+$headerBgColor: #373b6a;
+$mainBgColor: #21254b;
+$mainColor: aliceblue;
+$activeColor: #b2bd42;
+
+@media (max-width: 1420px) {
+    .movie-footer__container,
+    .movie-header{
+        padding: 0px 10px;
+    }
+}
+@media (max-width: 1250px) {
+    .burger-button{
+        display: flex;
+        transform: rotate(360deg);
+        z-index: 3;
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+    .movie-header__form{
+        position: fixed;
+        top:0;
+        right: -320px;
+        flex-direction: column;
+        width: 320px;
+        background-color: $headerBgColor;
+        margin-left: 0;
+        z-index: 2;
+        margin-top: 100px;
+        padding-top: 30px;
+        padding-bottom: 50px;
+        transition: right .4s ease-in;
+    }
+    .movie-header__wraper-sort{
+        flex-direction: column;
+        row-gap: 30px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .movie-header__container-wraper-search{
+        order: -1;
+        width: 90%;
+    }
+    .movie-header__form-search{
+        width: 100%;
+    }
+
+
+    .movie-header__form-sort-btn,
+    .movie-header__form-select-year,
+    .select{
+        width: 60%;
+    }
+}
+
+@media (max-width: 1050px) {
+    .movie-main__container-card{
+        overflow: auto;
+    }
+    .movie-main__container-card{
+        display: flex;
+        flex-direction: column;
+    }
+    .movie-main__container-card-overview-title{
+        margin: 0;
+    }
+    .movie-main__wrapper-card-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 0;
+        max-height: auto;
+        max-width:  100vw;
+        row-gap: 0px;
+    }
+}
+
+@media (max-width: 720px) {
+    .movie-footer__container{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .movie-footer{
+        height: auto;
+        align-items: center;
+    }
+    .movie-tmbd__text{
+        text-align: center;
+    }
+    .movie-main__container-card-container-video,
+    .movie-main__container-card-video{
+        width: 100vw;
+        height: calc(100vw/1.7777);
+    }
+}

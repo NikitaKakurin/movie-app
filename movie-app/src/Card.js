@@ -64,6 +64,7 @@ class Card{
         let timeout = setTimeout(()=>{
             this.cardWrapper.style.opacity = 1;
         },100)
+        document.documentElement.style.overflow = 'hidden';
     }
 
     hide(){
@@ -74,7 +75,7 @@ class Card{
         }
         this.cardWrapper.addEventListener('transitionend', setDisplayNone)
         this.cardWrapper.style.opacity = 0;
-        
+        document.documentElement.style.overflow = '';
     }
 }
 

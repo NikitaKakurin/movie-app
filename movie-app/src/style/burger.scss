@@ -1,0 +1,45 @@
+$headerBgColor: #373b6a;
+$mainBgColor: #21254b;
+$mainColor: aliceblue;
+$activeColor: #b2bd42;
+
+.burger-button{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.burger-button:hover .burger-button__line{
+    background-color: $activeColor;
+}
+
+.burger-button__line{
+    width: 50px;
+    height: 3px;
+    background-color: $mainColor;
+    transition: all 0.3s;
+    z-index: 3;
+}
+
+.burger-button__line-first{
+    width: 60px;
+    height: 2px;
+    transform: translateY(6px) rotate(-45deg);
+
+}
+
+.burger-button__line-second{
+    display: none;
+}
+
+.burger-button__line-third{
+    width: 60px;
+    height: 2px;
+    transform: translateY(-6px) rotate(45deg);
+}

@@ -1,4 +1,3 @@
-
 @mixin formsInputs() {
     border: 2px solid #22254b;
     border-radius: 50px;
@@ -7,6 +6,7 @@
     padding: 10px 8px;
     color: $mainColor;
     font-size: inherit;
+    font-family: inherit;
 }
 
 $headerBgColor: #373b6a;
@@ -22,6 +22,7 @@ $activeColor: #b2bd42;
 
 
 html{
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-weight: 400;
 }
@@ -32,6 +33,7 @@ body{
 }
 
 .movie__container{
+    position: relative;
     min-height: 100vh;
     display: flex;
     justify-content: space-between;
@@ -39,13 +41,17 @@ body{
 }
 
 .movie-header{
+    position: fixed;
     background: $headerBgColor;
     height: 100px;
+    width: 100%;
     display: flex;
     align-items: center;
     padding: 0 100px;
+    z-index: 3;
 }
 .movie__title{
+    font-family: 'Bungee shade', cursive;
     color: $mainColor;
 }
 
@@ -55,24 +61,32 @@ body{
     align-items: center;
     gap: 30px;
 }
+.movie-header__wraper-sort{
+    display: flex;
+    gap: 10px;
+}
 .select{
     @include formsInputs();
-
     option{
         color: $mainColor;
         background-color:$mainBgColor;
     }
     transition: color .5s ease-in, border .5s ease-in;
     cursor: pointer;
+    order:2;
 }
 .movie-header__form-select-year{
     @include formsInputs();
     transition: color .5s ease-in, border .5s ease-in;
+    order: 2;
 }
 .movie-header__form-select-year::placeholder{
     color: $mainColor
 }
-
+.movie-header__form-select-year:hover::placeholder{
+    color: $activeColor
+}
+.movie-header__form-search-submit-btn,
 .movie-header__form-sort-btn{
     @include formsInputs();
     width: 100px;
@@ -81,20 +95,43 @@ body{
     cursor: pointer;
     transition: background 0.5s ease-in;
     transition: color 0.5s ease-in;
+    order: 2;
 }
-
+.movie-header__form-search-submit-btn:hover,
 .movie-header__form-sort-btn:hover{
     background: rgb(182, 182, 184);
     color: #000;
     cursor: pointer ;
 }
+.movie-header__container-wraper-search{
+    display: flex;
+    
+}
+.movie-header__form-search-submit-btn{
+    width: 70px;
+    order:2;
+    padding: 0;
+}
+
+.movie-header__form-search-icon{
+    
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/svg/magnify.svg");
+    background-size: 50px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
 
 
 .movie-header__wraper-search{
     position: relative;
+    order: 2
 }
 .movie-header__form-search{
     @include formsInputs();
+    
     width: 200px;    
     padding-right: 40px;
     transition: color .5s ease-in, border .5s ease-in;
@@ -110,15 +147,16 @@ body{
     border: 2px solid $activeColor;
     color: $activeColor;
 }
-
+.movie-header__form-select-year:focus,
 .movie-header__form-search:focus{
     background-color: rgb(226, 228, 229);
     color:#1c1c1c
 }
+.movie-header__form-select-year:focus::placeholder,
 .movie-header__form-search:focus::placeholder{
     color:#1c1c1c
 }
-
+.movie-header__form-select-year:focus:hover::placeholder,
 .movie-header__form-search:focus:hover::placeholder{
     color:#1c1c1c
 }
@@ -150,6 +188,7 @@ body{
 }
 
 .movie-main{
+    margin-top: 100px;
     background: $mainBgColor;
     flex-grow: 1;
 }

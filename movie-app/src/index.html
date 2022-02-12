@@ -4,67 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Bungee+Shade&family=Courgette&family=Inter&family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <title>Movie-app</title>
 </head>
 <body>
     <div class="movie__container">
         <header class="movie-header">
             <h1 class="movie__title">Movie-app</h1>
+            <div class="burger-button">
+                <div class="burger-button__line"></div>
+                <div class="burger-button__line"></div>
+                <div class="burger-button__line"></div>
+            </div>
             <form class="movie-header__form">
-                <select name="rating" id="rating" class="movie-header__form-select-rating select">
-                    <option value="">rating</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <select name="country" id="country" class="movie-header__form-select-country select">
-                    <option value="">Country</option>
-                    <option value="RU">Russia</option>
-                    <option value="US">USA</option>
-                    <option value="IT">Italy</option>
-                    <option value="FR">France</option>
-                    <option value="GE">Germany</option>
-                </select>
-                <select name="prop" id="prop" class="movie-header__form-select-main select">
-                    <option value="vote_average">by rating</option>
-                    <option value="release_date">by date</option>
-                    <option value="popularity">by popularity</option>
-                </select>
-                <select name = "genres" id="genres" class="movie-header__form-select-genres select" >
-                    <option value="" selected>Genres</option>
-                    <option value="28">Action</option>
-                    <option value="12">Adventure</option>
-                    <option value="16">Animation</option>
-                    <option value="35">Comedy</option>
-                    <option value="80">Crime</option>
-                    <option value="99">Documentary</option>
-                    <option value="18">Drama</option>
-                    <option value="10751">Family</option>
-                    <option value="14">Fantasy</option>
-                    <option value="36">History</option>
-                    <option value="27">Horror</option>
-                    <option value="10402">Music</option>
-                    <option value="9648">Mystery</option>
-                    <option value="10749">Romance</option>
-                    <option value="878">Science Fiction</option>
-                    <option value="10770">TV Movie</option>
-                    <option value="53">Thriller</option>
-                    <option value="10752">War</option>
-                    <option value="37">Western</option>
-                </select>
-                <input class="movie-header__form-select-year" type = "number" max="2022" min="1895" placeholder="Year">
-                <button type="button" class="movie-header__form-sort-btn">Sort</button>
-                <div class="movie-header__wraper-search">
-                    <input class="movie-header__form-search" autocomplete="off" type="text" name="search" id="search" placeholder="search">
-                    <button type="button" class="movie-header__form-search-reset-btn">&times;</button>
+                
+                <div class="movie-header__wraper-sort">
+                    <select name="prop" id="prop" class="movie-header__form-select-main select">
+                        <option value="popularity">by popularity</option>
+                        <option value="vote_average">by rating</option>
+                        <option value="release_date">by date</option>
+                    </select>
+                    <select name = "genres" id="genres" class="movie-header__form-select-genres select" >
+                        <option value="" selected>Genres</option>
+                        <option value="28">Action</option>
+                        <option value="12">Adventure</option>
+                        <option value="16">Animation</option>
+                        <option value="35">Comedy</option>
+                        <option value="80">Crime</option>
+                        <option value="99">Documentary</option>
+                        <option value="18">Drama</option>
+                        <option value="10751">Family</option>
+                        <option value="14">Fantasy</option>
+                        <option value="36">History</option>
+                        <option value="27">Horror</option>
+                        <option value="10402">Music</option>
+                        <option value="9648">Mystery</option>
+                        <option value="10749">Romance</option>
+                        <option value="878">Science Fiction</option>
+                        <option value="10770">TV Movie</option>
+                        <option value="53">Thriller</option>
+                        <option value="10752">War</option>
+                        <option value="37">Western</option>
+                    </select>
+                    <input class="movie-header__form-select-year" type = "number" max="2022" min="1895" placeholder="Year">
+                    <button type="button" class="movie-header__form-sort-btn">Sort</button>
+                </div>
+
+                <div class="movie-header__container-wraper-search">
+                    <div class="movie-header__wraper-search">
+                        <input class="movie-header__form-search" autocomplete="off" type="text" name="search" id="search" placeholder="search">
+                        <button type="button" class="movie-header__form-search-reset-btn">&times;</button>
+                    </div>
+                    <button type="button" class="movie-header__form-search-submit-btn">
+                        <span class="movie-header__form-search-icon"></span>
+                    </button>
                 </div>
             </form>
         </header>
@@ -95,7 +91,7 @@
                                 </div>
                             </div>
                             <p class="movie-main__container-card-tagline"></p>
-                            <h4>Overview:</h4>
+                            <h4 class="movie-main__container-card-overview-title">Overview:</h4>
                             <p class="movie-main__container-card-overview"></p>
                         </div>
                     </header>

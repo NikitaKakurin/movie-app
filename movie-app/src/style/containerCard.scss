@@ -21,12 +21,12 @@ $activeColor: #b2bd42;
 }
 
 .movie-main__container-card{
+    position: relative;
     margin: 0 auto;
-    width: 80vw;
-    height: 80vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     color: $mainColor;
-    border: 10px solid #aca9a9;
     background-color: $headerBgColor;
     background-repeat: no-repeat;
     background-position: center center;
@@ -42,8 +42,15 @@ $activeColor: #b2bd42;
     overflow-y: auto;
     row-gap: 20px;
 }
+
 .movie-main__container-card-title{
+    font-family: 'Merriweather', serif;;
     text-align: center;
+    color: orange;
+}
+.movie-main__container-card-overview-title{
+    font-family: 'Merriweather', serif;;
+    color: orange;
 }
 .movie-main__container-card-properties{
     margin-top: 5px;
@@ -68,30 +75,40 @@ $activeColor: #b2bd42;
     line-height: 1.5rem;
 }
 
+.movie-main__container-card-tagline{
+    font-family: 'Courgette', cursive;
+}
 .movie-main__container-card-close{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 4px;
+    right: 4px;
     border-radius: 100%;
     width: 70px;
     height: 70px;
     font-size: 70px;
+    padding-bottom: 10px;
     line-height: 0;
     font-weight: 900;
     vertical-align: middle;
     text-align: center;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.25);
     border: none;
+    transition: color 0.3s ease-in;
 }
-
 .movie-main__container-card-close:hover{
     color: $activeColor;
 }
 
 .movie-main__container-card-container-video{
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 2;
+    
+}
+
+.movie-main__container-card-video{
+    border: none;
+    width: 720px;
+    height: 405px;
 }
