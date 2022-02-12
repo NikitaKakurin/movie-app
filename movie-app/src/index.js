@@ -76,7 +76,7 @@ function handleClick(event){
     }
     if(target.classList.contains(".movie-header__form-search-submit-btn")
     ||target.closest(".movie-header__form-search-submit-btn")){
-        debugger
+        
         makeSearch();
         if(isMenuOpen){
             hideMenu();
@@ -108,7 +108,6 @@ function getMovieCardData(id){
     fetch(movieUrl)
         .then(response=>response.json())
         .then((data)=>{
-            console.log(data);
             displayMovieCardData(data)
         })
         .catch(err => console.log(err))
@@ -133,7 +132,6 @@ function makeSearch(){
 };
 
 function pasteMovies(url){
-    console.log(url)
     fetch(url)
         .then((res)=>{
             if(res.ok){
@@ -154,7 +152,6 @@ function pasteMovies(url){
 }
 
 function renderPagination(data){
-    console.log(url);
     if ( data.total_pages == 0){
         addFragmentToPaginations()
         return;
@@ -178,7 +175,7 @@ function renderPagination(data){
     }
 
      if(data.total_pages<=data.page+2){
-         debugger
+         
          let start = data.total_pages - 4;
          let limit = data.total_pages + 1;       
          createPaginationBtn(start, limit)

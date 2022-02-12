@@ -26,7 +26,7 @@ class Card{
         this.rating.innerText =  dataCard.vote_average;
         this.tagline.innerText = dataCard.tagline;
         this.overview.innerText = dataCard.overview;
-        
+        this.getSrcVideo(dataCard.id);
         fixColorRating(this.rating, dataCard.vote_average)
         function fixTime(){
             return `${Math.floor(dataCard.runtime/60)}:${(dataCard.runtime%60)}h`;
@@ -34,8 +34,6 @@ class Card{
         function getList(arr){
             return arr.map(el => el.name).join(', ')
         }
- console.log(this.getSrcVideo(dataCard.id));
-  
     }
     getSrcVideo(id){
         let src;

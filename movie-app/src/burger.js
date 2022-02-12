@@ -14,7 +14,7 @@ export class BurgerButton{
 
 
     changeBurgerButton({isToOpen}) {
-        debugger
+        
         let fun;
         if(isToOpen){
             fun = "add";
