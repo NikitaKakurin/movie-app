@@ -3,6 +3,7 @@ import './style/style.scss';
 import './style/burger.scss';
 import './style/containerCard.scss';
 import './style/media.scss';
+import './style/ads.scss';
 
 import noPoster from './assets/img/noPoster.png';
 
@@ -24,40 +25,56 @@ let isMenuOpen = false;
 let url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b66e39cd8df804db7c43212613fe5719&page=1&language=en-US`;
 let page;
 let card;
+let isKeyDown = false;
 searchInput.focus();
-searchInput.addEventListener('keydown',handleKeyDown);
 function handleKeyDown(event) {
     if(event.code ==="Enter"||event.code ==="NumpadEnter"){
-        makeSearch();
-        if(isMenuOpen){
-            hideMenu();
+        if(!isKeyDown){
+            makeSearch();
+            searchInput.addEventListener('keyup',handleKeyUp);
+            if(isMenuOpen){
+                hideMenu();
+            }
+            isKeyDown=true;
         }
+
     }
 }
-pasteMovies(url);
-document.addEventListener('click', handleClick)
+
+function handleKeyUp(event) {
+    debugger
+    if(event.code ==="Enter"||event.code ==="NumpadEnter"){
+        isKeyDown=false;
+        searchInput.removeEventListener('keyup',handleKeyUp);
+    }
+}
 
 function handleClick(event){
     const target = event.target;
+
     if(target.classList.contains('movie-header__form-search-reset-btn')){
         searchInput.value = "";
         searchInput.focus();
+        return;
     }
 
     if(target.classList.contains('movie-main__pagination-btn')){
         page=target.value;
         url = url.replace(/page=[\d]+/,`page=${page}`)
         pasteMovies(url);
+        return;
     }
     
     if(target.classList.contains('movie-main__data-container')||
          target.closest('.movie-main__data-container')){
         let id = target.closest('.movie-main__data-container').dataset.id;
         getMovieCardData(id);
+        return;
     }
 
     if(target.classList.contains('movie-main__container-card-close')){
         card.hide();
+        return;
     }
 
     if (target.classList.contains('movie-header__form-sort-btn')) {
@@ -65,6 +82,7 @@ function handleClick(event){
         if(isMenuOpen){
             hideMenu();
         }
+        return;
     }
 
     if(target.classList.contains(".burger-button")||target.closest(".burger-button")){
@@ -73,14 +91,21 @@ function handleClick(event){
         }else{
             showMenu();
         }
+        return;
     }
-    if(target.classList.contains(".movie-header__form-search-submit-btn")
+
+    if(target.classList.contains("movie-header__form-search-submit-btn")
     ||target.closest(".movie-header__form-search-submit-btn")){
-        
         makeSearch();
         if(isMenuOpen){
             hideMenu();
         }
+        return;
+    }
+
+    if(target.classList.contains('movie-ads__text-close-button')){
+        document.querySelector('.movie-ads').style.display = 'none';
+        searchInput.focus();
     }
 }
 
@@ -127,7 +152,6 @@ function makeSearch(){
     }else{
         url = `https://api.themoviedb.org/3/search/movie?api_key=b66e39cd8df804db7c43212613fe5719&query=${query}&page=1&language=en-US&vote_count.gte=500`;
     }
-    
     pasteMovies(url)
 };
 
@@ -148,7 +172,6 @@ function pasteMovies(url){
             renderPagination(data)
         })
         .catch(err => alert("Ошибка Http: " + response.status))
-
 }
 
 function renderPagination(data){
@@ -182,9 +205,6 @@ function renderPagination(data){
          addFragmentToPaginations(fragment);
          return;
     }
-
-
-
 
     function addLastPage(){
         let span = createOneElement('span', 'movie-main__pagination-span');
@@ -274,15 +294,12 @@ function createMovie(dataMovie){
         poster.src = noPoster;
     }
 
-
     poster.alt = dataMovie.title;
-
     infoName.innerText = dataMovie.title;
     infoRating.innerText = dataMovie.vote_average;
     fixColorRating(infoRating, dataMovie.vote_average);
     overviewTitle.innerText = "Overview";
     overviewText.innerText = dataMovie.overview;
-
     containerMovie.dataset.id=dataMovie.id
     return containerMovie;
 }
@@ -296,8 +313,13 @@ export function fixColorRating(elem,rating){
         elem.style.color = "green"
     }
 }
+
 function createOneElement(tag, className){
     const elem = document.createElement(tag);
     elem.classList.add(className);
     return elem;
 }
+
+pasteMovies(url);
+document.addEventListener('click', handleClick);
+searchInput.addEventListener('keydown',handleKeyDown);

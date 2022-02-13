@@ -1,0 +1,51 @@
+.movie-ads{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    z-index: 20;
+}
+
+.movie-ads__container-text{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    width: 320px;
+    padding-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgb(200, 200, 200);
+}
+
+.movie-ads__text{
+    font-size: 18px;
+    line-height: 24px;
+    text-align: justify;
+}
+
+.movie-ads__text-close-button{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    color: rgb(200, 200, 200);
+    font-family: monospace;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    background-image: url("../assets/svg/close-thick.svg");
+    background-size: 40px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    filter: invert(100%);
+}
+
+.movie-ads__text-close-button:hover{
+    filter: invert(68%) sepia(68%) saturate(406%) hue-rotate(24deg) brightness(96%) contrast(81%);
+}
