@@ -42,7 +42,7 @@ function handleKeyDown(event) {
 }
 
 function handleKeyUp(event) {
-    debugger
+    
     if(event.code ==="Enter"||event.code ==="NumpadEnter"){
         isKeyDown=false;
         searchInput.removeEventListener('keyup',handleKeyUp);
