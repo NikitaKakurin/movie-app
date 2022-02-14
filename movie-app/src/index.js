@@ -106,6 +106,10 @@ function handleClick(event){
     if(target.classList.contains('movie-ads__text-close-button')){
         document.querySelector('.movie-ads').style.display = 'none';
         searchInput.focus();
+        return;
+    }
+    if(target.classList.contains('movie-main__read-more-btn')){
+        card.showOrHideReadMore()
     }
 }
 

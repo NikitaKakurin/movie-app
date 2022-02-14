@@ -12,7 +12,15 @@ class Card{
         this.rating = this.cardWrapper.querySelector('.movie-main__container-card-rating'),
         this.tagline = this.cardWrapper.querySelector('.movie-main__container-card-tagline'),
         this.overview = this.cardWrapper.querySelector('.movie-main__container-card-overview'),
-        this.video = this.cardWrapper.querySelector('.movie-main__container-card-video')
+        this.video = this.cardWrapper.querySelector('.movie-main__container-card-video'),
+        this.voteCount = this.cardWrapper.querySelector('.movie-main__container-card-vote-count'),
+        this.popularity = this.cardWrapper.querySelector('.movie-main__container-card-popularity'),
+        this.budget = this.cardWrapper.querySelector('.movie-main__container-card-budget'),
+        this.revenue = this.cardWrapper.querySelector('.movie-main__container-card-revenue'),
+        this.language = this.cardWrapper.querySelector('.movie-main__container-card-language'),
+        this.readMoreBtn = this.cardWrapper.querySelector('.movie-main__read-more-btn'),
+        this.readMoreContainer = this.cardWrapper.querySelector('.movie-main__container-read-more')
+        this.isReadMoreShow = false;
     }
 
     render(dataCard){
@@ -26,6 +34,13 @@ class Card{
         this.rating.innerText =  dataCard.vote_average;
         this.tagline.innerText = dataCard.tagline;
         this.overview.innerText = dataCard.overview;
+
+        this.voteCount.innerText = dataCard.vote_count;
+        this.popularity.innerText = dataCard.popularity;
+        this.budget.innerText = dataCard.budget + '$';
+        this.revenue.innerText = dataCard.revenue + '$';
+        this.language.innerText = dataCard.original_language;
+        this.revenue.style.color=(dataCard.revenue>dataCard.budget)?'green':'red';
         this.getSrcVideo(dataCard.id);
         fixColorRating(this.rating, dataCard.vote_average)
         function fixTime(){
@@ -34,7 +49,10 @@ class Card{
         function getList(arr){
             return arr.map(el => el.name).join(', ')
         }
+
+
     }
+
     getSrcVideo(id){
         let src;
         let videosUrl =  `https://api.themoviedb.org/3/movie/${id}/videos?api_key=b66e39cd8df804db7c43212613fe5719`;
@@ -74,6 +92,18 @@ class Card{
         this.cardWrapper.addEventListener('transitionend', setDisplayNone)
         this.cardWrapper.style.opacity = 0;
         document.documentElement.style.overflow = '';
+    }
+
+    showOrHideReadMore(){
+        if(this.isReadMoreShow){
+            this.readMoreContainer.style.maxHeight = '0px';
+            this.readMoreBtn.innerText = 'Read more';
+            this.isReadMoreShow=false;
+            return;
+        }
+        this.readMoreContainer.style.maxHeight = '300px';
+        this.readMoreBtn.innerText = 'Hide';
+        this.isReadMoreShow=true;
     }
 }
 
